@@ -2,33 +2,12 @@
  * Created on December 25, 2013, 4:57 PM
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <assert.h>
-#include <math.h>
-
-typedef struct Person{
-	char name[20];
-	double balance;
-	int compounds;
-	double rate;
-	double estimate;
-	struct Person * next;
-	struct Person * prev;
- }Person;
-
-typedef struct List{
-	struct Person * head;
-	struct Person * tail;
-	int count;
-} List;
+#include "clientInterestProject.h"
 
 List *List_create(){
 	return (List *)(malloc(sizeof(List)));
 }
 
-/*Outputs the list with its stored information to file labeled Clients.txt upon exiting the program
- @param List * list*/
 int printListToFile(List * list){
 	if(!list){return 0;}
 	FILE * fp;
@@ -48,8 +27,6 @@ int printListToFile(List * list){
 	return 1;
 }
 
-/*Stores the information given as input to the respective client-node in the list
- @param Person * person*/
 int info(Person * p){
 	if(!p){return 0;}
 
@@ -74,8 +51,7 @@ int info(Person * p){
 	p->rate= rat;
 	return 1;
 } 
-/*Calculate the balance estimates for the clients stored with the information given as input.
- @param List * list*/
+
 int calcBalanceEst(List * list){
 	if(!list){return 0;}
 	double estimate, t;
@@ -99,8 +75,7 @@ int calcBalanceEst(List * list){
 	}
 	return 1;
 }
-/*End Menu -- reached after each iteration of the program.
- @param List * list*/
+
 int end(List * list){
 	int choice = 0;
 
@@ -146,8 +121,6 @@ int end(List * list){
 	return 1;
 }
 
-/*Deletes the List of Client
- @param List * list*/
 int deleteList(List * list){
 	if(list->head == NULL){return 0;}
 
